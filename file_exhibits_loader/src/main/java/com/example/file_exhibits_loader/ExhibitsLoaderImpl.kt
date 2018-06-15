@@ -16,7 +16,7 @@ class ExhibitsLoaderImpl(private val context: Context) : ExhibitsLoader {
     private fun loadJSONFromAsset(): String {
         var json = ""
         try {
-            val inputStream = context.assets.open("ios.json")
+            val inputStream = context.assets.open(context.getString(R.string.assets_path_to_data))
             val buffer = ByteArray(inputStream.available())
             inputStream.read(buffer)
             inputStream.close()
