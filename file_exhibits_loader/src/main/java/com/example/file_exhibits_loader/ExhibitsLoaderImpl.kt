@@ -14,17 +14,16 @@ class ExhibitsLoaderImpl(private val context: Context) : ExhibitsLoader {
     override fun getExhibitList(): List<Exhibit> = Gson().fromJson(loadJSONFromAsset(), ExhibitContainer::class.java).list
 
     private fun loadJSONFromAsset(): String {
-        var json: String? = null
+        var json = ""
         try {
-            val `is` = context.assets.open("ios.json")
-            val size = `is`.available()
-            val buffer = ByteArray(size)
-            `is`.read(buffer)
-            `is`.close()
+            val inputStream = context.assets.open("ios.json")
+            val buffer = ByteArray(inputStream.available())
+            inputStream.read(buffer)
+            inputStream.close()
             json = String(buffer, Charset.forName("UTF-8"))
         } catch (ex: IOException) {
             ex.printStackTrace()
-            return ""
+            return json
         }
 
         return json
