@@ -19,4 +19,8 @@ class ExhibitAdapter(private val context: Context, private val exhibits: List<Ex
         holder.setupView(exhibits[position], context)
     }
 
+    override fun onViewRecycled(holder: ExhibitViewHolder) {
+        super.onViewRecycled(holder)
+        holder.save()
+    }
 }

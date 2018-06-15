@@ -21,17 +21,14 @@ class MainActivity : MvpAppCompatActivity(), MainActivityView {
     @ProvidePresenter
     fun providePresenter(): MainActivityPresenter = inject<MainActivityPresenter>().value
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        presenter.loadData()
+    }
 
     override fun setupAdapter(exhibits: List<Exhibit>) {
         exhibit_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         exhibit_recycler.adapter = ExhibitAdapter(this, exhibits)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        presenter.loadData()
-
     }
 }
