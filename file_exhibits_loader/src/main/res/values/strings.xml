@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FileExhibitsLoader</string>
+    <string name="assets_path_to_data">ios.json</string>
+</resources>
